@@ -10,19 +10,19 @@ Cette architecture organise l'agent en **profils specialises**. Chaque profil a 
 
 ## Pourquoi ce repo est necessaire
 
-| Outil | Skills natifs ? | Ce que tu obtiens sans ce repo |
-|-------|---------------|-------------------------------|
-| **Claude Code** | ❌ Non | Un agent generaliste sans segmentation |
-| **Cursor** | ❌ Non (Rules seulement) | Des regles globales, pas d'experts dynamiques |
-| **GitHub Copilot** | ❌ Non | Completion de code, pas d'orchestration |
-| **Kimi Code CLI** | ✅ Oui (`~/.kimi/skills/`) | Cette architecture exploite pleinement le systeme |
-| **Windsurf** | ❌ Non | Agent generaliste |
+| Outil | Skills natifs | Adaptation necessaire |
+|-------|--------------|----------------------|
+| **Claude Code** | Partielle | Adapter via sous-agents, commandes et contexte |
+| **Cursor** | Partielle | Adapter via Rules, Memory et Agent Mode |
+| **GitHub Copilot** | Faible | Necessite une couche d'orchestration externe |
+| **Kimi Code CLI** | Forte | Compatible directement avec `~/.kimi/skills/` |
+| **Windsurf** | Partielle | Adaptation via regles et workflows |
 
-**Le standard [agentskills.io](https://agentskills.io) existe, mais personne ne l'implemente nativement.**
+Peu d'assistants IA proposent aujourd'hui une architecture native combinant profils, experts, memoire specialisee et skills reutilisables.
 
-Les IDE IA modernes te donnent un agent puissant — mais sans structure. Ce repo ajoute la couche manquante : **router de profils, selection d'experts, garde-fous et sanity check**. C'est un template d'architecture, pas un framework finalise. Tu l'adaptes a ton outil.
+Ce repo ajoute cette structure : **router de profils, selection d'experts, garde-fous et sanity check**. C'est un template d'architecture, pas un framework finalise. Tu l'adaptes a ton outil.
 
-> **Tester sur Kimi Code CLI. Adaptable a tout agent compatible agentskills.io.**
+> **Teste principalement sur Kimi Code CLI. Les concepts sont adaptables a tout assistant IA.**
 
 ---
 
