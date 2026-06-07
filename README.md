@@ -22,7 +22,7 @@ Peu d'assistants IA proposent aujourd'hui une architecture native combinant prof
 
 Ce repo ajoute cette structure : **router de profils, selection d'experts, garde-fous et sanity check**. C'est un template d'architecture, pas un framework finalise. Tu l'adaptes a ton outil.
 
-> **Teste principalement sur Kimi Code CLI. Les concepts sont adaptables a tout assistant IA.**
+> **Conçu et teste principalement sur Kimi Code CLI. Les concepts sont adaptables a tout assistant IA.**
 
 ---
 
@@ -90,7 +90,7 @@ Un expert = une specialite a l'interieur d'un profil. Exemple dans le profil **d
 - Expert Cloud & DevOps (Docker, deploy)
 - Expert Security (auth, injection, XSS)
 
-Chaque expert est declenche par des mots-cles. Si ta requete contient "react" et "tailwind", l'expert Frontend prend le relais.
+Chaque expert est selectionne a partir de la requete, du contexte actif et des metadonnees des skills. Si ta requete concerne React et Tailwind, l'expert Frontend est priorise.
 
 ### 3. Les skills (procedures concretes)
 
@@ -138,14 +138,19 @@ Ces quatre skills font tourner toute l'architecture.
 
 ---
 
-## Les 4 garde-fous
+## Les 3 garde-fous
 
 Ces mecanismes empechent l'agent de repondre n'importe comment. Chacun resout un probleme distinct.
 
 1. **Broad Search Fallback** — Si aucun expert n'est "Tres pertinent", l'agent scanne tous les skills du profil avant de repondre. Empeche les reponses a cote.
 2. **Cross-Profile Auto** — Si la question melange plusieurs domaines (ex: "landing page + SEO"), l'agent consulte les experts des profils secondaires. Empeche les reponses incompletes.
 3. **Sanity Check** — Verifie que la reponse correspond au bon projet, aux bons prix, a la bonne audience. Inclut le **Context Null Check** : si la requete ne mentionne aucun projet connu, l'agent demande : "De quel projet parles-tu ?" Empeche les hallucinations de contexte.
-4. **Skill Coverage Audit** — Une fois par mois, l'agent compte les skills utilises et corrige ceux qui ne sont jamais decouverts. Empeche l'accumulation de skills inutiles.
+
+---
+
+## Maintenance
+
+**Skill Coverage Audit** — Une fois par mois, l'agent compte les skills utilises et corrige ceux qui ne sont jamais decouverts. Empeche l'accumulation de skills inutiles.
 
 ---
 
@@ -255,10 +260,13 @@ agent-profiles-orchestrator/
 │   ├── skill-authoring-guide/
 │   └── stop-slop/
 │
-├── profiles/              → Exemple de profil
-│   └── dev/
-│       ├── memory.md
-│       └── EXPERTS.md
+├── profiles/              → Profils avec packs de skills (5 skills chacun)
+│   ├── dev/               → Profil d'exemple le plus complet (memory.md + EXPERTS.md)
+│   ├── business/
+│   ├── marketing/
+│   ├── security/
+│   ├── architecture/
+│   └── design/
 │
 └── examples/              → Cas d'usage concrets
     ├── startup-launch/
@@ -266,6 +274,8 @@ agent-profiles-orchestrator/
     ├── marketing-campaign/
     └── saas-architecture/
 ```
+
+> Le profil **dev** est l'exemple de reference le plus complet (`memory.md` + `EXPERTS.md`). Les autres profils contiennent un pack minimal de 5 skills representatifs. Les descriptions completes de tous les profils sont dans `PROFILES.md`.
 
 ---
 
