@@ -211,7 +211,7 @@ agent-profiles-orchestrator/
 ├── README.md              → Ce document
 ├── ARCHITECTURE.md        → Documentation technique (7 phases, simplifiees)
 ├── PROFILES.md            → Detail complet des 6 profils
-├── LINKEDIN_POST.md       → Textes prets a publier
+├── examples/              → Cas d'usage concrets
 ├── LICENSE                → MIT
 │
 ├── skills/                → Skills meta (moteur du systeme)
