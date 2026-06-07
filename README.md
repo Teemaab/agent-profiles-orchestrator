@@ -6,7 +6,7 @@ Une architecture open source pour orchestrer des profils d'experts et des skills
 
 Un agent IA generaliste repond avec tout ce qu'il connait. Sans structure, il melange le code, la strategie, le marketing et la securite dans la meme reponse. Il invente des prix. Il propose du React pour un probleme de pricing. Il cite des regles metier qui n'ont rien a voir.
 
-Cette architecture organise l'agent en **profils specialises**. Chaque profil a sa propre memoire, ses propres experts et ses propres skills. Quand tu poses une question, l'agent active le bon profil, consulte le bon expert, et verifie qu'il repond au bon projet avant d'envoyer quoi que ce soit.
+Cette architecture organise l'agent en **profils specialises**. Chaque profil a sa propre memoire, ses propres experts et ses propres skills. Cette architecture guide l'agent pour selectionner le profil, les experts et les skills les plus pertinents. Elle ne garantit pas une execution parfaite, mais elle structure la prise de decision.
 
 ## Pourquoi ce repo est necessaire
 
@@ -69,14 +69,14 @@ flowchart TD
 
 Un profil = un metier.
 
-| Profil | Metier | Skills |
-|--------|--------|--------|
-| **dev** | Developpeur, architecte technique | 36+ |
-| **business** | Entrepreneur, CFO, CRO, strategist | 60+ |
-| **marketing** | Growth hacker, copywriter, acquisition | 25+ |
-| **security** | Pentester, analyste SOC, RSSI | 36+ |
-| **architecture** | Architecte logiciel, DDD, cloud | 50+ |
-| **design** | Designer UI/UX, design system | 20+ |
+| Profil | Metier | Exemples de skills |
+|--------|--------|-------------------|
+| **dev** | Developpeur, architecte technique | `react-best-practices`, `security-best-practices`, `playwright-skill` |
+| **business** | Entrepreneur, CFO, CRO, strategist | `ceo-advisor`, `pricing-strategist`, `deal-desk` |
+| **marketing** | Growth hacker, copywriter, acquisition | `copywriting`, `seo-audit`, `meta-ads`, `landing-page` |
+| **security** | Pentester, analyste SOC, RSSI | `owasp-top-10`, `dmarc-dkim-spf`, `incident-response` |
+| **architecture** | Architecte logiciel, DDD, cloud | `aws-solution-architect`, `tactical-ddd`, `create-rfc` |
+| **design** | Designer UI/UX, design system | `figma-implement-design`, `taste-skill`, `web-accessibility` |
 
 Chaque profil contient deux fichiers essentiels :
 - **`memory.md`** : la memoire du projet (stack, regles, pricing, audience)
@@ -151,37 +151,37 @@ Ces mecanismes empechent l'agent de repondre n'importe comment. Chacun resout un
 
 ## Les 6 profils en detail
 
-### Dev (36+ skills)
+### Dev
 **Experts :** Stack Principal, Frontend, Backend, Cloud & DevOps, AI & ML, Performance, Security, Testing, Code Quality, Planning.
-**Skills cles :** `react-best-practices`, `cloudflare-workers-ai`, `security-best-practices`, `playwright-skill`, `perf-lighthouse`.
+**Exemples de skills :** `react-best-practices`, `cloudflare-workers-ai`, `security-best-practices`, `playwright-skill`, `perf-lighthouse`.
 
-### Business (60+ skills)
+### Business
 **Experts :** C-Suite & Governance, Finance, Commercial & Revenue, Operations, Growth & Sales, Strategy & Transformation.
-**Skills cles :** `ceo-advisor`, `cfo-advisor`, `cro-advisor`, `pricing-strategist`, `deal-desk`, `revenue-operations`.
+**Exemples de skills :** `ceo-advisor`, `cfo-advisor`, `cro-advisor`, `pricing-strategist`, `deal-desk`, `revenue-operations`.
 
-### Marketing (25+ skills)
+### Marketing
 **Experts :** Content & SEO, Acquisition, Conversion, Launch, Analytics, Channels & Partnerships, Psychology & Strategy.
-**Skills cles :** `content-strategy`, `copywriting`, `seo-audit`, `meta-ads`, `tiktok-ads`, `landing-page`, `launch-strategy`.
+**Exemples de skills :** `content-strategy`, `copywriting`, `seo-audit`, `meta-ads`, `tiktok-ads`, `landing-page`, `launch-strategy`.
 
-### Security (36+ skills)
+### Security
 **Experts :** Web Security, Network Security, Email Security, Cryptography, Incident Response, Compliance & Audit, Code Security, ECC Specialized.
-**Skills cles :** `testing-api-security-with-owasp-top-10`, `configuring-pfsense-firewall-rules`, `implementing-dmarc-dkim-spf-email-security`, `triaging-security-incident-with-ir-playbook`.
+**Exemples de skills :** `testing-api-security-with-owasp-top-10`, `configuring-pfsense-firewall-rules`, `implementing-dmarc-dkim-spf-email-security`, `triaging-security-incident-with-ir-playbook`.
 
-### Architecture (50+ skills)
+### Architecture
 **Experts :** Domain-Driven Design, RFC & ADR, Patterns, System Design, Legacy Migration, Cloud Architects.
-**Skills cles :** `aws-solution-architect`, `tactical-ddd`, `create-rfc`, `create-adr`, `legacy-migration-planner`.
+**Exemples de skills :** `aws-solution-architect`, `tactical-ddd`, `create-rfc`, `create-adr`, `legacy-migration-planner`.
 
-### Design (20+ skills)
+### Design
 **Experts :** UI/UX, Design System, Figma, Visual Quality, Web Quality.
-**Skills cles :** `figma-implement-design`, `frontend-design`, `taste-skill`, `redesign-skill`, `web-accessibility`.
+**Exemples de skills :** `figma-implement-design`, `frontend-design`, `taste-skill`, `redesign-skill`, `web-accessibility`.
 
 ---
 
 ## Regles absolues
 
-- Max 7 skills par requete
+- **Max 7 skills par requete** (par defaut — ajustable selon la capacite de contexte de l'agent)
 - Jamais recharger l'IDE (switch dynamique)
-- Tout nouveau skill DOIT passer `skill-tester` (seuil : 70% pass rate)
+- Tout nouveau skill DOIT passer `skill-tester` (comparaison A/B : avec skill vs sans skill)
 - Toujours reviewer les outputs High/Critical
 - Purger le contexte inutile quand on switch de profil
 
@@ -198,9 +198,45 @@ Ces mecanismes empechent l'agent de repondre n'importe comment. Chacun resout un
 ### Tu es contributeur
 
 1. Ecris un nouveau skill en suivant `skill-authoring-guide`
-2. Passe-le au `skill-tester` (seuil : 70% de reussite)
+2. Passe-le au `skill-tester` (comparaison A/B : la reponse avec le skill doit etre meilleure que sans)
 3. Ajoute-le dans le bon `EXPERTS.md`
 4. Propose une pull request
+
+---
+
+## Exemple complet
+
+**Requete utilisateur :**
+> "Je veux lancer un SaaS de cyberscurite pour les PME. Quelle strategie ?"
+
+**Flux :**
+
+1. **Router** → mots-cles "SaaS", "cyberscurite", "strategie" → **Profil Business** (principal) + **Profil Security** (secondaire)
+
+2. **Profile Loader** → Charge `memory.md` du profil Business + `EXPERTS.md`
+
+3. **Supervisor** → "lancer", "strategie" → criticite **Medium** (3 skills)
+
+4. **Expert Pool** (Business)
+   - **Strategy & Transformation** → Tres pertinent
+   - **Finance** → Pertinent
+
+5. **Cross-Profile Auto** → mots-cles "cyberscurite" detectes → consulte **Expert Security / Threat Model** (profil Security)
+
+6. **Skills selectionnes**
+   - `market-research` (Business)
+   - `pricing-strategist` (Business)
+   - `security-threat-model` (Security — cross-profile)
+
+7. **Sanity Check** → Contexte inconnu (`memory.md` vide) → **STOP** et demande : "De quel projet parles-tu ?"
+
+8. **Apres clarification** → L'utilisateur fournit le nom du projet, la cible, le budget. Le `memory.md` est mis a jour.
+
+9. **Reponse finale** → Strategie de lancement structuree :
+   - Analyse de marche (PME, concurrence)
+   - Modele de pricing (freemium vs B2B)
+   - Threat model initial (risques principaux pour une PME)
+   - Calendrier de lancement
 
 ---
 
@@ -211,7 +247,6 @@ agent-profiles-orchestrator/
 ├── README.md              → Ce document
 ├── ARCHITECTURE.md        → Documentation technique (7 phases, simplifiees)
 ├── PROFILES.md            → Detail complet des 6 profils
-├── examples/              → Cas d'usage concrets
 ├── LICENSE                → MIT
 │
 ├── skills/                → Skills meta (moteur du systeme)
