@@ -12,3 +12,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Draft content not meant for publication
+LINKEDIN_POST.md
