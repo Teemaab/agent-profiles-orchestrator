@@ -22,10 +22,9 @@ Mots-cles : "cree", "campagne" → criticite **High** (5 skills max, Producer-Re
 - Expert **Content & SEO** → Secondaire
 
 ### 5. Skills selectionnes
-- `meta-ads` (Acquisition) — structure de campagne, ciblage, creatives
+- `content-strategy` (Acquisition) — structure de campagne, ciblage, messages cles
 - `copywriting` (Content & SEO) — textes d'annonce, accroches
-- `landing-page` (Conversion) — page de destination associee
-- `launch-strategy` (Conversion) — sequence de lancement
+- `launch` (Conversion) — page de destination et sequence de lancement
 - `seo-audit` (Content & SEO — backup, si besoin de mots-cles organiques)
 
 ### 6. Producer-Reviewer

@@ -1,0 +1,48 @@
+{
+  "skill_name": "code-review-and-quality",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this Python function:\n\n```python\ndef get_user(id):\n    result = db.execute(\"SELECT * FROM users WHERE id = \" + str(id))\n    data = result.fetchone()\n    return data\n```",
+      "expected_output": "Should run the five-axis review. Correctness: fetchone() returns None on miss — not handled. Security (CRITICAL): raw string concatenation into SQL → SQL injection vulnerability, must use parameterized query. Readability: `data` and `result` are weak names; `id` shadows built-in. Architecture: no separation of DB layer. Should provide a corrected version using `db.execute('SELECT * FROM users WHERE id = ?', (id,))` and explicit None handling. Security finding must be flagged as Critical/Blocker.",
+      "assertions": [
+        "Runs all five axes (correctness, readability, architecture, security, performance)",
+        "Flags SQL injection as Critical/Blocker",
+        "Provides corrected version with parameterized query",
+        "Flags missing None handling for fetchone()",
+        "Flags weak variable names (data, result)",
+        "Does not approve the change as-is"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review this TypeScript component:\n\n```typescript\nexport function UserList({ users }: { users: any[] }) {\n  const [d, setD] = useState(false);\n  const [data2, setData2] = useState<any>(null);\n\n  useEffect(() => {\n    fetch('/api/users').then(r => r.json()).then(res => {\n      setData2(res);\n      setD(true);\n    });\n  }, []);\n\n  if (!d) return <div>Loading...</div>;\n  return <ul>{data2.map((u: any) => <li>{u.name}</li>)}</ul>;\n}\n```",
+      "expected_output": "Should apply five-axis review. Correctness: missing error handling on fetch(); data2.map() will throw if API returns non-array; missing React key prop on list items. Readability: `d`, `data2`, `u` are cryptic names — rename to `isLoaded`, `users`, `user`; `any` types defeat TypeScript. Architecture: component fetches its own data (violates single-responsibility), should receive data as prop or use a data-fetching hook. Performance: fetch has no cleanup/abort on unmount. Should rate this as 'Request Changes' with specific fixes listed per axis.",
+      "assertions": [
+        "Flags missing error handling on fetch()",
+        "Flags missing React key prop",
+        "Flags cryptic variable names (d, data2, u)",
+        "Flags any types as defeating TypeScript",
+        "Flags architecture issue: component mixing fetch and render",
+        "Flags missing fetch cleanup on unmount",
+        "Rates as Request Changes, not Approve"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I've refactored an authentication middleware. Review it:\n\n```typescript\nexport async function authMiddleware(req: Request, next: NextFunction) {\n  const token = req.headers['authorization']?.split(' ')[1];\n  if (!token) return next();\n  try {\n    const user = jwt.verify(token, process.env.JWT_SECRET!);\n    req.user = user;\n    next();\n  } catch (e) {\n    next();\n  }\n}\n```",
+      "expected_output": "Should apply five-axis review. Security (Critical): on invalid token, catch block calls next() instead of returning 401 — a failed token silently grants anonymous access. Security: JWT_SECRET non-null assertion (!) crashes if env var is missing in production. Correctness: if (!token) calls next() — no token means unauthenticated, caller must check req.user, but this is error-prone; better to 401 if token present but invalid. Readability: catch swallows the error silently. Should provide corrected version that returns 401 on invalid token and validates JWT_SECRET at startup. Must flag security finding as Critical/Blocker.",
+      "assertions": [
+        "Flags catch block calling next() on invalid token as Critical security bug",
+        "Flags JWT_SECRET non-null assertion as dangerous",
+        "Flags silent error swallowing in catch",
+        "Provides corrected version returning 401 on invalid token",
+        "Suggests validating JWT_SECRET at startup",
+        "Rates as Request Changes (blocked)"
+      ],
+      "files": []
+    }
+  ]
+}

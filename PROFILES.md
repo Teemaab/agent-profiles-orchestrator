@@ -2,14 +2,14 @@
 
 ## Vue d'ensemble
 
-| Profil | Rôle | Nombre de skills |
-|--------|------|------------------|
-| **dev** | Code, stack, architecture technique | 36+ |
-| **business** | Strategie, pricing, finance, gouvernance | 60+ |
-| **marketing** | Acquisition, contenu, conversion, lancement | 25+ |
-| **security** | Audit, pentest, conformite, forensique | 36+ |
-| **architecture** | DDD, patterns, cloud, RFC | 50+ |
-| **design** | UI/UX, design system, Figma | 20+ |
+| Profil | Rôle | Skills (pack starter) |
+|--------|------|----------------------|
+| **dev** | Code, stack, architecture technique | 5 (extensible) |
+| **business** | Strategie, pricing, finance, gouvernance | 5 (extensible) |
+| **marketing** | Acquisition, contenu, conversion, lancement | 5 (extensible) |
+| **security** | Audit, pentest, conformite, forensique | 5 (extensible) |
+| **architecture** | DDD, patterns, cloud, RFC | 5 (extensible) |
+| **design** | UI/UX, design system, Figma | 5 (extensible) |
 
 ---
 

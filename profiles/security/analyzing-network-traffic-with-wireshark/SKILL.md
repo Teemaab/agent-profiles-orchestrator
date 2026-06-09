@@ -26,6 +26,9 @@ mitre_attack:
 - T1071
 - T1557
 - T1046
+metadata:
+  version: "1.0.0"
+  author: "Teemaab"
 ---
 # Analyzing Network Traffic with Wireshark
 

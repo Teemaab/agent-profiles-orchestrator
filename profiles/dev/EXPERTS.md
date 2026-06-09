@@ -1,17 +1,18 @@
 # Dev — Expert Pool Mapping
 
-## Expert : Frontend
-**Trigger :** frontend, react, nextjs, component, css, tailwind
+## Expert : Frontend & Performance
+**Trigger :** frontend, react, nextjs, component, css, tailwind, core web vitals, lighthouse, performance
 
 | Skill | Dossier |
 |-------|---------|
-| react-best-practices | `react-best-practices/` |
-| frontend-ui-engineering | `frontend-ui-engineering/` |
+| cloudflare-workers-ai | `cloudflare-workers-ai/` |
+| core-web-vitals | `core-web-vitals/` |
+| playwright-skill | `playwright-skill/` |
 
-## Expert : Backend
-**Trigger :** backend, api, fastapi, python, sql, database
+## Expert : Backend & Quality
+**Trigger :** backend, api, fastapi, python, sql, database, code review, refactor, clean code, conventions
 
 | Skill | Dossier |
 |-------|---------|
-| api-response-sanitization | `api-response-sanitization/` |
-| testing-for-broken-access-control | `testing-for-broken-access-control/` |
+| code-review-and-quality | `code-review-and-quality/` |
+| coding-guidelines | `coding-guidelines/` |

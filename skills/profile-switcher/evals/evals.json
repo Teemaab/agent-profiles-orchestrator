@@ -1,0 +1,48 @@
+{
+  "skill_name": "profile-switcher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Je veux créer une landing page pour mon SaaS qui convertit mieux. Le design actuel est en React/Tailwind mais le copywriting est plat et le CTA ne convainc pas.",
+      "expected_output": "Must route to marketing as the dominant profile (copywriting, CTA, conversion are the core ask) and flag dev as secondary (React/Tailwind context). Must explain why marketing is chosen as primary — not just pick it silently. Must NOT ask the user to choose a profile. May load dev as secondary for component-level suggestions. Output should confirm: 'Profil Marketing activé (principal) — Profil Dev en consultation secondaire pour le contexte React/Tailwind.'",
+      "assertions": [
+        "Selects marketing as the primary profile",
+        "Identifies dev as a secondary profile (not primary)",
+        "Explains the routing decision (why marketing dominates)",
+        "Does NOT ask the user to choose a profile manually",
+        "Confirms secondary profile consultation for React/Tailwind context",
+        "Does not route to design as primary despite UI mention"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "J'ai une fuite mémoire dans mon service Node.js. Le CPU monte à 100% sous charge et le process crashe au bout de 2 heures.",
+      "expected_output": "Must route directly to dev profile. Must select Backend or Performance expert (both are valid — memory leak + CPU = backend/performance concern). Must NOT trigger a secondary profile. Must NOT ask the user to choose. Routing should be immediate and silent ('Profil Dev activé.'). Output should focus purely on memory leak diagnosis in Node.js — no marketing, no business, no architecture cross-consultation unless the word 'architecture' appears in the request.",
+      "assertions": [
+        "Routes to dev profile without ambiguity",
+        "Selects Backend or Performance expert (not Frontend)",
+        "Does not trigger any secondary profile",
+        "Does not ask the user to choose a profile",
+        "Routing is direct and silent (no explanation required for obvious cases)",
+        "Response focuses on Node.js memory leak diagnosis"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Est-ce que la conscience peut exister sans matière ? Qu'est-ce que ça implique pour l'intelligence artificielle ?",
+      "expected_output": "Must return profile: none and confidence: low. Must NOT force a routing to any profile (not dev for 'IA', not business, not any other). Must respond using native model reasoning without loading any profile memory or experts. Must append a disclaimer at the end of the response: 'Aucun profil spécialisé ne correspond à cette requête. Cette réponse s'appuie sur le raisonnement natif du modèle — niveau de confiance : faible à moyen.' Must NOT pretend a skill was used. Response content (the philosophical answer) is secondary — the routing behavior and disclaimer are what is evaluated.",
+      "assertions": [
+        "Sets profile to none (does not force a domain routing)",
+        "Sets confidence to low",
+        "Does not load any profile memory.md or EXPERTS.md",
+        "Responds using native model reasoning",
+        "Appends the no-match disclaimer at the end of the response",
+        "Does not claim a skill was applied",
+        "Does not route to dev just because 'intelligence artificielle' appears in the prompt"
+      ],
+      "files": []
+    }
+  ]
+}

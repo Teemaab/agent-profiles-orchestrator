@@ -1,0 +1,54 @@
+{
+  "skill_name": "security-best-practices",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a Flask REST API with SQLAlchemy and JWT authentication. Can you do a security review of this login endpoint?\n\n```python\n@app.route('/login', methods=['POST'])\ndef login():\n    username = request.json['username']\n    password = request.json['password']\n    user = User.query.filter_by(username=username, password=password).first()\n    if user:\n        token = jwt.encode({'user_id': user.id}, app.config['SECRET_KEY'])\n        return jsonify({'token': token})\n    return jsonify({'error': 'Invalid credentials'}), 401\n```",
+      "expected_output": "Should identify Python/Flask/SQLAlchemy/JWT as the stack and load matching security reference. Critical findings: (1) Plaintext password comparison — passwords must be hashed with bcrypt/argon2, never stored or compared in plaintext. (2) JWT algorithm not specified — vulnerable to alg:none attack; must pass algorithms=['HS256'] to decode. (3) request.json['username'] raises KeyError if field missing — use request.json.get() or validate schema. Report must include severity levels. Password storage must be flagged as Critical. Corrected version must use werkzeug.security.check_password_hash or passlib.",
+      "assertions": [
+        "Identifies Python/Flask/SQLAlchemy/JWT as the stack",
+        "Loads relevant security reference files",
+        "Flags plaintext password comparison as Critical",
+        "Flags missing JWT algorithm specification",
+        "Flags missing input validation (KeyError risk)",
+        "Provides corrected code using password hashing",
+        "Produces report with severity levels"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Start a new Node.js/Express API project for me with authentication. Make it secure by default.",
+      "expected_output": "Should identify Node.js/Express as the stack and load javascript-express-security.md references. Must produce secure-by-default code including: HTTPS enforcement, helmet.js for security headers, rate limiting on auth routes (express-rate-limit), input validation (joi or zod), bcrypt for password hashing, JWT with explicit algorithm and expiry, CORS configured explicitly (not wildcard), environment variables for secrets (never hardcoded), parameterized queries if DB is used. Must NOT generate code with hardcoded secrets, wildcard CORS, or missing rate limiting. Each security decision should be briefly explained.",
+      "assertions": [
+        "Loads Node.js/Express security reference files",
+        "Includes helmet.js for security headers",
+        "Includes rate limiting on auth routes",
+        "Uses bcrypt for password hashing",
+        "JWT has explicit algorithm and expiry",
+        "CORS is not wildcard",
+        "No hardcoded secrets",
+        "Input validation is included",
+        "Explains security decisions"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Run a security audit on this Go HTTP handler:\n\n```go\nfunc uploadHandler(w http.ResponseWriter, r *http.Request) {\n    file, header, _ := r.FormFile(\"upload\")\n    defer file.Close()\n    dst, _ := os.Create(\"/uploads/\" + header.Filename)\n    defer dst.Close()\n    io.Copy(dst, file)\n    fmt.Fprintf(w, \"Uploaded: %s\", header.Filename)\n}\n```",
+      "expected_output": "Should identify Go as the stack and load go-general-security.md references. Critical findings: (1) Path traversal — header.Filename can contain '../../../etc/passwd'; must use filepath.Base() and validate against an allowlist. (2) No file size limit — DoS via large upload; must check r.ContentLength and wrap with io.LimitReader. (3) Errors ignored with _ — os.Create and FormFile errors must be handled and returned as HTTP errors. (4) No file type validation — must check magic bytes, not just extension. (5) XSS — fmt.Fprintf reflects filename into response without escaping. Must produce a numbered security report with severity and a corrected version.",
+      "assertions": [
+        "Loads Go security reference files",
+        "Flags path traversal via header.Filename as Critical",
+        "Recommends filepath.Base() to sanitize filename",
+        "Flags missing file size limit (DoS risk)",
+        "Flags ignored errors (_) as security issue",
+        "Flags missing file type validation",
+        "Flags XSS via unescaped filename in response",
+        "Produces numbered security report with severity",
+        "Provides corrected version"
+      ],
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "skill_name": "frontend-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a landing page for a developer tools SaaS that monitors API performance. Make it look nothing like every other SaaS landing page.",
+      "expected_output": "Must commit to a BOLD aesthetic direction and state it explicitly before generating code (e.g. 'editorial/industrial' or 'brutalist minimal'). Must choose a distinctive font pairing — not Inter, Roboto, Arial. Must use oklch or color-mix for palette. Must avoid AI slop fingerprints: no purple-to-blue gradients, no cyan glow accents on dark, no rounded cards with thick colored left border, no hero metric layout (big number + small label + gradient accent), no glassmorphism. Must use fluid spacing with clamp(). Must identify one memorable differentiator. Design should pass the AI Slop Test — look intentionally authored, not template fill-in.",
+      "assertions": [
+        "States a clear aesthetic direction before generating code",
+        "Does not use Inter, Roboto, Arial, or system defaults",
+        "Uses oklch or modern CSS color functions",
+        "Avoids purple-to-blue gradients and cyan glow accents",
+        "Does not use identical card grid (icon + heading + text repeated)",
+        "Does not use the hero metric layout cliche",
+        "Uses fluid spacing with clamp()",
+        "Identifies one memorable differentiator for the design"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create an analytics dashboard with a dark theme for monitoring real-time server metrics (CPU, memory, requests/sec, error rate).",
+      "expected_output": "Must commit to a specific dark aesthetic — not default dark mode with glowing accents. Neutrals must be tinted, not pure #000. Must use container queries (@container) for responsive panels. Must add one considered motion moment (staggered panel load) using transform/opacity only — not width/height/padding. Must design an empty state that teaches (e.g. 'Connect your first server to see metrics'). Must NOT use cyan/purple glow accents. Must avoid nested cards. Data hierarchy must be clear without gradient text.",
+      "assertions": [
+        "Commits to a specific dark aesthetic, not generic glow-on-black",
+        "Tints neutrals with a brand hue (not pure black)",
+        "Uses container queries for panel responsiveness",
+        "Adds one entry animation using transform/opacity only",
+        "Designs a meaningful empty state",
+        "Avoids cyan/purple glow accents",
+        "Avoids nested cards",
+        "Does not use gradient text for metrics or headings"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Make a conference poster for a talk titled 'The Hidden Cost of Hydration' about React Server Components performance.",
+      "expected_output": "Must choose a strong typographic or visual concept and state it. Must use a distinctive font pairing — not monospace as a developer aesthetic shortcut. Must avoid generic stock-photo + headline layout. Must use a limited cohesive palette (dominant + sharp accent, not 3 equal-weight colors). Must not use rounded rectangles with generic drop shadows. Should have an unexpected composition or typographic choice that makes it memorable. Layout should use intentional asymmetry — not center-everything. Design should feel like a deliberate artifact, not a template fill-in.",
+      "assertions": [
+        "States a typographic or visual concept for the poster",
+        "Uses a distinctive font pairing (not monospace as developer shortcut)",
+        "Avoids generic stock-photo + headline layout",
+        "Uses a limited palette (dominant + accent, not 3 equal colors)",
+        "Avoids rounded rectangles with generic drop shadows",
+        "Uses asymmetric composition intentionally",
+        "Has one memorable or unexpected design choice"
+      ],
+      "files": []
+    }
+  ]
+}

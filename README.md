@@ -148,6 +148,34 @@ Ces mecanismes empechent l'agent de repondre n'importe comment. Chacun resout un
 
 ---
 
+## Philosophy
+
+Les skills sont des amplificateurs de qualité, pas des prérequis.
+
+Quand un skill pertinent existe, l'agent l'utilise pour améliorer la cohérence, réduire l'improvisation et ancrer les réponses dans des pratiques établies.
+
+Quand aucun skill ne correspond, l'agent continue avec ses capacités natives plutôt que d'échouer — et signale explicitement son niveau de confiance.
+
+```
+Router → Profile → Expert → Skills ──[match]──→ Response améliorée
+                                   └─[no match]─→ Native Model Reasoning → Response + confidence level
+```
+
+L'objectif n'a jamais été : aucun skill → échec.
+L'objectif est : skill trouvé → meilleure réponse. Aucun skill → réponse honnête.
+
+### Les skills réduisent les hallucinations — indirectement
+
+Les skills n'empêchent pas un modèle d'halluciner. Par contre ils :
+- réduisent le nombre de décisions libres à prendre
+- fournissent une procédure à suivre
+- imposent un vocabulaire et des bonnes pratiques
+- réduisent l'improvisation
+
+La réduction d'hallucinations est un effet de bord de la réduction d'improvisation, pas une garantie.
+
+---
+
 ## Maintenance
 
 **Skill Coverage Audit** — Une fois par mois, l'agent compte les skills utilises et corrige ceux qui ne sont jamais decouverts. Empeche l'accumulation de skills inutiles.

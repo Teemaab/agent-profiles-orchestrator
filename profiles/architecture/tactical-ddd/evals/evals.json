@@ -1,0 +1,50 @@
+{
+  "skill_name": "tactical-ddd",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Is this good DDD? Please validate my Order domain model.\n\n```typescript\nclass Order {\n  public id: string;\n  public status: string;\n  public items: OrderItem[];\n  public totalAmount: number;\n\n  setStatus(status: string) { this.status = status; }\n  setItems(items: OrderItem[]) { this.items = items; }\n  setTotalAmount(amount: number) { this.totalAmount = amount; }\n}\n\nclass OrderService {\n  confirm(order: Order) {\n    order.setStatus('confirmed');\n  }\n\n  addItem(order: Order, item: OrderItem) {\n    order.items.push(item);\n    order.setTotalAmount(order.totalAmount + item.price);\n  }\n}\n```",
+      "expected_output": "Intent is 'validate/review' → run Phase 1 + Phase 2 only, then ask before refactoring. Phase 1 detection: public setters (setStatus, setItems, setTotalAmount) = behaviour should be encapsulated; OrderService.confirm() and OrderService.addItem() hold domain logic that belongs in Order; setter chain in addItem = missing intent method. Phase 2 assessment: Order has unique identity tracked over time → Entity; totalAmount should be a Value Object (Money); status should be a typed Value Object or enum, not a raw string. Severity: Severe (pure data bag with all logic in a service). Must stop at Phase 2 and ask 'Would you like me to apply these fixes?' before proceeding.",
+      "assertions": [
+        "Runs Phase 1 + Phase 2 only (not Phase 3) since intent is validate",
+        "Detects public setter chain as anemia signal",
+        "Identifies OrderService holding domain logic that belongs in Order",
+        "Classifies Order as Entity (has identity)",
+        "Suggests totalAmount should be a Value Object (Money)",
+        "Rates severity as Severe",
+        "Stops and asks permission before refactoring"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Please refactor this domain object to follow proper DDD.\n\n```python\nclass BankAccount:\n    def __init__(self, account_id, balance, owner_id):\n        self.account_id = account_id\n        self.balance = balance\n        self.owner_id = owner_id\n\nclass AccountService:\n    def deposit(self, account, amount):\n        if amount <= 0:\n            raise ValueError('Amount must be positive')\n        account.balance += amount\n\n    def withdraw(self, account, amount):\n        if amount > account.balance:\n            raise ValueError('Insufficient funds')\n        account.balance -= amount\n\n    def transfer(self, source, target, amount):\n        self.withdraw(source, amount)\n        self.deposit(target, amount)\n```",
+      "expected_output": "Intent is 'refactor' → run Phase 1 + Phase 2 + Phase 3. Phase 1: AccountService owns all domain logic; BankAccount has no domain methods; balance is a primitive instead of a Money Value Object. Phase 2: BankAccount is an Aggregate root (has identity, owns invariants); transfer spans two Aggregates → remains a Domain Service. Phase 3 refactoring: (1) move deposit/withdraw guards into BankAccount, (2) replace balance primitive with a Money Value Object, (3) add DomainEvents (MoneyDeposited, MoneyWithdrawn) after each state change, (4) transfer stays in a service since it spans two Aggregates. Must show before/after diff for BankAccount.",
+      "assertions": [
+        "Runs Phase 1 + Phase 2 + Phase 3 since intent is refactor",
+        "Moves deposit/withdraw logic into BankAccount",
+        "Suggests Money Value Object for balance",
+        "Adds Domain Events (MoneyDeposited, MoneyWithdrawn)",
+        "Keeps transfer in a Domain Service (spans two Aggregates)",
+        "Shows before/after diff",
+        "Explains why transfer stays in service (cross-Aggregate rule)"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "How should I model a Product, a Review, and a Rating in an e-commerce domain? A Product has a name, description, price, and category. A Review has a text body and belongs to one Product and one User. A Rating is a score from 1-5 associated with a Review.",
+      "expected_output": "Intent is 'how should I model' → load reference.md directly and guide through building block classification. Product: Entity (unique identity, has lifecycle). Review: Entity if reviews have individual identity (can be edited/deleted). Rating: Value Object (no identity of its own, defined entirely by its score 1-5, immutable). Category: Value Object (enumerable, no identity). Price: Value Object (amount + currency, immutable). Aggregate boundaries: Product is its own Aggregate root; Review is its own Aggregate (do not nest Reviews inside Product — that creates a large Aggregate). Reviews reference Product by ID only (never hold object reference). Must explain the Value Object vs Entity distinction using the identity test.",
+      "assertions": [
+        "Loads reference.md for modeling guidance",
+        "Classifies Product as Entity",
+        "Classifies Rating as Value Object with explanation (no identity, defined by value)",
+        "Classifies Price as Value Object",
+        "Recommends separate Aggregates for Product and Review",
+        "States Reviews reference Product by ID only",
+        "Explains Value Object vs Entity using identity test"
+      ],
+      "files": []
+    }
+  ]
+}

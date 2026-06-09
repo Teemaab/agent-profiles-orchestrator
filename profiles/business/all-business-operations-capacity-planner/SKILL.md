@@ -6,6 +6,9 @@ author: claude-code-skills
 license: MIT
 tags: [bizops, capacity, headcount, utilization, queueing-theory, ops-planning, little-law, workforce]
 compatible_tools: [claude-code, codex-cli, cursor, antigravity, opencode, gemini-cli]
+metadata:
+  version: "1.0.0"
+  author: "Teemaab"
 ---
 
 # capacity-planner

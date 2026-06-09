@@ -1,0 +1,51 @@
+{
+  "skill_name": "skill-authoring-guide",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Je veux créer un skill pour analyser des contrats juridiques et détecter les clauses abusives. L'agent doit pouvoir lire un contrat et produire un rapport structuré.",
+      "expected_output": "Must generate a complete SKILL.md scaffold including: (1) YAML frontmatter with name (e.g. 'legal-contract-analyzer'), description that states when to use AND when NOT to use (e.g. 'Do NOT use for regulated legal advice or court submissions'), metadata.version and metadata.author placeholder. (2) Trigger description section. (3) Numbered workflow (e.g. 1. Read contract, 2. Identify clause types, 3. Flag suspicious patterns, 4. Generate report). (4) Output format section with explicit structure (report sections, severity levels, labels). (5) At least one example of a 'when NOT to use' boundary. Must NOT generate tool-specific instructions (no 'use Cursor', no 'ask Claude to'). Must NOT skip the output format section. Scaffold should be immediately usable — not a vague template.",
+      "assertions": [
+        "Generates a complete SKILL.md scaffold (not just an outline)",
+        "Frontmatter includes name, description, metadata.version, metadata.author placeholder",
+        "Description field includes when NOT to use this skill",
+        "Workflow is numbered with concrete steps",
+        "Output format section is explicit (labels, sections, structure)",
+        "No tool-specific branding in the generated scaffold",
+        "Scaffold is immediately usable without further editing of structure"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Here's my SKILL.md draft — can you review it?\n\n```yaml\n---\nname: \"git-workflow\"\ndescription: >\n  Guides clean Git workflows for feature branches. Use Cursor's Agent Mode\n  to apply these steps automatically. Requires GitHub Copilot for inline suggestions.\nmetadata:\n  version: \"1.0.0\"\n  author: \"devuser\"\n---\n```\n\n## Workflow\n1. Use Cursor to open the branch panel\n2. Ask Claude to generate a commit message\n3. Push via GitHub Desktop\n\n## Output\nA clean Git history.",
+      "expected_output": "Must flag all tool-specific branding violations. Violations in this file: 'Use Cursor's Agent Mode', 'Requires GitHub Copilot', 'Use Cursor to open the branch panel', 'Ask Claude to generate a commit message', 'Push via GitHub Desktop'. Must explain the rule: skills must be agent-agnostic — they must work with Claude Code, Cursor, Copilot, or any other agent. Must propose concrete rewrites for each violation — e.g. 'Use Cursor to open the branch panel' → 'Open the branch panel in your IDE'. Must also flag 'Output: A clean Git history.' as too vague (not a structured output format). Must NOT refuse to help — the goal is to fix the skill, not reject it.",
+      "assertions": [
+        "Flags 'Use Cursor's Agent Mode' as tool-specific branding violation",
+        "Flags 'Requires GitHub Copilot' as tool-specific branding violation",
+        "Flags 'Ask Claude to generate a commit message' as tool-specific branding violation",
+        "Flags 'Push via GitHub Desktop' as tool-specific branding violation",
+        "Explains the agent-agnostic rule (must work with any AI assistant)",
+        "Provides at least one concrete rewrite suggestion",
+        "Flags output format as too vague",
+        "Does not refuse to help — proposes fixes"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I want to create a skill for reviewing React code — checking hooks usage, component structure, and performance anti-patterns.",
+      "expected_output": "Must detect that an equivalent skill already exists in the repo: 'react-best-practices' in profiles/dev/. Must point to the existing skill explicitly. Must NOT generate a duplicate scaffold. Must explain why duplication is harmful (skill discovery confusion, maintenance burden, routing conflicts). Should offer two options: (1) extend the existing react-best-practices skill by adding the missing coverage areas, or (2) create a narrower, non-overlapping skill with a distinct name and scope. Must identify what the new request adds (if anything) that the existing skill doesn't cover.",
+      "assertions": [
+        "Detects that react-best-practices already exists in profiles/dev/",
+        "Points to the existing skill path (profiles/dev/react-best-practices/)",
+        "Does NOT generate a duplicate scaffold",
+        "Explains why duplication causes routing conflicts or confusion",
+        "Offers the option to extend the existing skill",
+        "Offers the option to create a narrower non-overlapping skill",
+        "Identifies what the new request adds over the existing skill"
+      ],
+      "files": []
+    }
+  ]
+}

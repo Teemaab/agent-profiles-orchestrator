@@ -1,0 +1,52 @@
+{
+  "skill_name": "skill-tester",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Test this skill:\n\n```yaml\n---\nname: \"pricing-strategist\"\ndescription: >\n  Builds and stress-tests pricing models for SaaS products. Use when deciding\n  between freemium, tiered, usage-based, or enterprise pricing. Do NOT use for\n  financial modeling or investor decks.\nmetadata:\n  version: \"1.0.0\"\n  author: \"Teemaab\"\n---\n```\n\n## Workflow\n1. Identify pricing model candidates\n2. Run a willingness-to-pay analysis\n3. Stress-test against competitive pricing\n4. Recommend with rationale\n\n## Output format\n- Model recommendation (freemium / tiered / usage-based / enterprise)\n- Price anchors with rationale\n- Risk table (3 risks minimum)\n\nevals/evals.json has 3 evals covering happy path, edge case, and refusal case. All assertions are specific and independently verifiable.",
+      "expected_output": "Must return a PASS report. Report must confirm: (1) frontmatter is present and all required fields are populated (name, description, metadata.version, metadata.author), (2) workflow section exists with numbered steps, (3) output format section exists with specific structure, (4) description explains when to use AND when NOT to use, (5) evals count meets minimum (3), (6) no tool-specific branding detected. Report format: 'PASS — skill-tester : pricing-strategist' followed by a checklist of verified items.",
+      "assertions": [
+        "Returns PASS status",
+        "Confirms all required frontmatter fields are present",
+        "Confirms workflow section exists",
+        "Confirms output format section exists",
+        "Confirms description includes when NOT to use",
+        "Confirms evals count meets minimum of 3",
+        "Confirms no tool-specific branding"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Test this skill:\n\n```\n# SEO Audit Skill\n\nThis skill audits SEO for landing pages.\n\n## What to do\n- Check title tags\n- Check meta descriptions\n- Check heading hierarchy\n- Check Core Web Vitals\n```\n\n(No frontmatter, no evals, no output format section)",
+      "expected_output": "Must return a FAIL report with a precise, numbered list of missing elements. Must identify at minimum: (1) missing YAML frontmatter block entirely, (2) missing 'name:' field, (3) missing 'description:' field with when-not-to-use clause, (4) missing 'metadata.version', (5) missing 'metadata.author', (6) missing output format section, (7) missing evals/evals.json. Must NOT just say 'frontmatter is missing' — must enumerate each absent field individually. Report format: 'FAIL — skill-tester : [unnamed skill]' followed by numbered list of absent items.",
+      "assertions": [
+        "Returns FAIL status",
+        "Lists missing frontmatter block explicitly",
+        "Lists missing name field",
+        "Lists missing description field (with when-not-to-use requirement)",
+        "Lists missing metadata.version",
+        "Lists missing metadata.author",
+        "Lists missing output format section",
+        "Lists missing evals/evals.json",
+        "Enumerates each missing item individually (not grouped as 'frontmatter is missing')"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Test this skill's evals:\n\n```json\n{\n  \"skill_name\": \"copywriting\",\n  \"evals\": [\n    {\n      \"id\": 1,\n      \"prompt\": \"Write a headline for a SaaS product.\",\n      \"expected_output\": \"A good headline.\",\n      \"assertions\": [\n        \"Output is good\",\n        \"Response is helpful\",\n        \"Answer looks right\"\n      ],\n      \"files\": []\n    }\n  ]\n}",
+      "expected_output": "Must return a WARN report (not FAIL, since the file is structurally valid). Must flag each vague assertion individually: 'Output is good' — not independently verifiable; 'Response is helpful' — subjective, not testable; 'Answer looks right' — no measurable criterion. Must flag 'expected_output: A good headline.' as too vague to evaluate against. Must provide a concrete rewrite suggestion for at least one assertion — e.g. 'Headline is under 10 words', 'Headline contains a benefit claim', 'Headline avoids generic phrases like cloud-based or all-in-one'. Must also flag that only 1 eval is present (minimum is 3). Report format: 'WARN — skill-tester : copywriting' followed by flagged items and rewrite suggestions.",
+      "assertions": [
+        "Returns WARN status (not FAIL — file is structurally valid JSON)",
+        "Flags 'Output is good' as not independently verifiable",
+        "Flags 'Response is helpful' as subjective",
+        "Flags 'Answer looks right' as lacking measurable criterion",
+        "Flags expected_output as too vague",
+        "Provides at least one concrete rewrite suggestion for an assertion",
+        "Flags that only 1 eval is present (minimum 3 required)"
+      ],
+      "files": []
+    }
+  ]
+}

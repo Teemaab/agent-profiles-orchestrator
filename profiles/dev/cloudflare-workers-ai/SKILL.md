@@ -1,6 +1,9 @@
 ---
 name: cloudflare-workers-ai
 description: Using Cloudflare Workers AI in a project -- configuration, integration, model selection, prompt optimization, structured JSON output, quota management, and error handling. Use this skill when adding AI to a Cloudflare Workers or Pages project, choosing a model, writing prompts for JSON output, debugging 429 errors, or migrating from another AI provider to Workers AI.
+metadata:
+  version: "1.0.0"
+  author: "Teemaab"
 ---
 
 # Cloudflare Workers AI

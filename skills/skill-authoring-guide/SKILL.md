@@ -1,11 +1,11 @@
 ---
 name: "skill-authoring-guide"
-description: "Guide for writing high-quality agent skills. Use when creating a new skill, editing an existing skill, reviewing skill quality, or when someone says 'how do I write a skill', 'skill structure', 'skill template', 'create a skill', 'skill best practices'. Also triggers when working with .agents/, .kimi/skills/, or SKILL.md files."
+description: "Guide for writing high-quality agent skills. Use when creating a new skill, editing an existing skill, reviewing skill quality, or when someone says 'how do I write a skill', 'skill structure', 'skill template', 'create a skill', 'skill best practices'. Also triggers when working with .agents/, .claude/skills/, or SKILL.md files."
 ---
 
 # Skill Authoring Guide
 
-Comment écrire des skills de qualité pour l'écosystème Kimi.
+Comment écrire des skills de qualité pour les agents AI (Claude, Cursor, Copilot, Windsurf…).
 
 ---
 
@@ -217,9 +217,9 @@ skill-name/
 
 ```bash
 # Workflow recommandé
-1. Écrire le skill dans ~/.kimi/skills-draft/{skill-name}/
+1. Écrire le skill dans skills-draft/{skill-name}/
 2. Lancer skill-tester
-3. Si APPROVED → merger dans ~/.kimi/skills/{skill-name}/
+3. Si APPROVED → merger dans skills/{skill-name}/
 4. Si REJECTED → corriger ou abandonner
 ```
 

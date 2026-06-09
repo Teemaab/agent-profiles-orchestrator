@@ -26,6 +26,9 @@ mitre_attack:
 - T1190
 - T1505.003
 - T1059.007
+metadata:
+  version: "1.0.0"
+  author: "Teemaab"
 ---
 
 

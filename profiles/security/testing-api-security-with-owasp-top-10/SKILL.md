@@ -25,6 +25,9 @@ mitre_attack:
 - T1059.007
 - T1505.003
 - T1083
+metadata:
+  version: "1.0.0"
+  author: "Teemaab"
 ---
 
 # Testing API Security with OWASP Top 10

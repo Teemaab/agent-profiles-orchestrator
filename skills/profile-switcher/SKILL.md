@@ -50,6 +50,15 @@ Si l'utilisateur ne précise pas de profil, classifier la requête :
 
 **Règle :** Si ambigu (ex: "landing page" = marketing + dev), demander : *"Tu veux que je traite ça en marketing, dev, ou les deux ?"*
 
+**Cas hors catalogue (no-match) :** Si aucun profil ne correspond — requête philosophique, créative, sans domaine identifiable :
+```
+profile: none
+confidence: low
+action: native_model_reasoning
+```
+Ne PAS forcer un routing arbitraire. Répondre en natif et ajouter en fin de réponse :
+> *"Aucun profil spécialisé ne correspond à cette requête. Cette réponse s'appuie sur le raisonnement natif du modèle — niveau de confiance : faible à moyen. Pour une réponse plus structurée, précise ton domaine (dev / business / marketing / security / architecture / design)."*
+
 ---
 
 ## Phase 2 : Profile Loader

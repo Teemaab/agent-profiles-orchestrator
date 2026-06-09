@@ -1,0 +1,57 @@
+{
+  "skill_name": "stop-slop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this text for AI slop patterns:\n\n\"We rebuilt the auth flow from scratch. The old system stored session tokens as plain strings in localStorage. The new one uses httpOnly cookies, rotates tokens on every request, and fails closed on missing claims. Deployment took 4 hours including rollback testing.\"",
+      "expected_output": "Must return a PASS result. No slop fingerprints present — text is direct, specific, concrete, and uses active voice. Must confirm the following: no filler adverbs (essentially, actually, simply, basically), no empty intensifiers, no passive voice hiding agency, no 'it's worth noting' or 'it is important to note' constructs, no temporal anchors ('in today's world', 'in the current landscape'), no synergy/leverage/value-add jargon. Must NOT flag concrete technical terms as slop. Must NOT suggest rewriting a text that is already clean.",
+      "assertions": [
+        "Returns PASS status",
+        "Confirms no filler adverbs detected",
+        "Confirms no passive voice hiding agency",
+        "Confirms no temporal anchors or landscape phrases",
+        "Confirms no synergy/leverage/value-add jargon",
+        "Does not flag concrete technical terms as slop",
+        "Does not suggest unnecessary rewrites"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review this text for AI slop patterns:\n\n\"In today's fast-paced digital landscape, it's worth noting that businesses need to leverage cutting-edge solutions to stay ahead of the curve. Our platform seamlessly integrates with your existing workflow to deliver value-added insights. Essentially, we help teams unlock their full potential and drive synergies across the organization. It goes without saying that success requires a holistic approach.\"",
+      "expected_output": "Must return a FAIL result with a numbered list of specific flagged phrases. Must flag each of the following individually: (1) 'In today's fast-paced digital landscape' — temporal anchor + landscape cliché, (2) 'it's worth noting that' — filler construct that adds no information, (3) 'leverage cutting-edge solutions' — jargon stack (leverage + cutting-edge), (4) 'stay ahead of the curve' — dead idiom, (5) 'seamlessly integrates' — empty adverb + vague verb, (6) 'value-added insights' — compound jargon, (7) 'Essentially' — filler adverb, (8) 'unlock their full potential' — motivational cliché, (9) 'drive synergies' — management jargon with no content, (10) 'It goes without saying that' — self-undermining filler. Must provide at least one concrete rewrite suggestion. Must NOT just say 'text contains slop' — must enumerate each phrase individually.",
+      "assertions": [
+        "Returns FAIL status",
+        "Flags 'In today's fast-paced digital landscape' as temporal anchor / landscape cliché",
+        "Flags 'it's worth noting that' as filler construct",
+        "Flags 'leverage' as management jargon",
+        "Flags 'cutting-edge' or 'stay ahead of the curve' as dead idiom",
+        "Flags 'seamlessly' as empty adverb",
+        "Flags 'value-added' as compound jargon",
+        "Flags 'Essentially' as filler adverb",
+        "Flags 'drive synergies' as content-free jargon",
+        "Provides at least one concrete rewrite suggestion",
+        "Enumerates each phrase individually (not grouped as 'text contains slop')"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Review this code for AI slop patterns in comments and docstrings:\n\n```python\ndef process_payment(amount, currency, user_id):\n    \"\"\"\n    This function handles the core payment processing logic.\n    It essentially takes the amount and processes it accordingly.\n    This is an important function that should be used carefully.\n    \"\"\"\n    # We need to validate the input here\n    if amount <= 0:\n        raise ValueError(\"Amount must be positive\")\n    \n    # This loop iterates over the items\n    for item in get_cart_items(user_id):\n        # Handle the item processing\n        charge(item, currency)\n```",
+      "expected_output": "Must detect slop in code comments and docstrings — not just in prose text. Must flag the following: (1) 'handles the core payment processing logic' in docstring — describes what the function name already says, adds no information (2) 'It essentially takes the amount and processes it accordingly' — 'essentially' is a filler adverb, 'processes it accordingly' is circular/vague, (3) 'This is an important function that should be used carefully' — no actionable content, (4) '# We need to validate the input here' — restates the obvious from the code below it, (5) '# This loop iterates over the items' — restates what `for item in` already communicates, (6) '# Handle the item processing' — says nothing about what the charge does. Must recommend removing or replacing slop comments with useful ones (e.g. WHY a decision was made, a non-obvious constraint). Must NOT flag the actual code logic as slop — only comments and docstrings.",
+      "assertions": [
+        "Returns FAIL status",
+        "Detects slop in docstrings (not just prose text)",
+        "Flags 'handles the core payment processing logic' as redundant with function name",
+        "Flags 'essentially' as filler adverb in docstring",
+        "Flags 'processes it accordingly' as circular/vague",
+        "Flags 'important function that should be used carefully' as content-free",
+        "Flags inline comment '# We need to validate the input here' as restating obvious code",
+        "Flags inline comment '# This loop iterates over the items' as redundant with for-loop syntax",
+        "Recommends replacing slop comments with WHY-comments or removing them",
+        "Does NOT flag the actual Python code logic as slop"
+      ],
+      "files": []
+    }
+  ]
+}

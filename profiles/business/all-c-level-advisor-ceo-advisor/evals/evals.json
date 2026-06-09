@@ -1,0 +1,50 @@
+{
+  "skill_name": "ceo-advisor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a Series A SaaS company ($2M ARR, 18 months runway). A strategic acquirer just offered $20M to buy us. Our investors are pushing us to take the deal. What should I consider?",
+      "expected_output": "Should apply CEO Advisor strategic decision framework. Should frame this as a Go/No-Go decision with multiple dimensions: financial (is $20M a good multiple at $2M ARR — 10x is below typical SaaS multiples of 15-20x at Series A growth rates), strategic (does acquisition align with long-term vision or foreclose it?), optionality (18 months runway gives leverage — not a distressed sale), team/culture (what happens to the team post-acquisition?). Should ask or probe: growth rate, burn rate, market size, founder's goals (exit vs build). Should NOT just say 'take the deal' or 'don't take it' — should provide the decision framework with trade-offs. Should reference investor alignment vs founder goals tension. Should suggest getting a fairness opinion from an M&A advisor.",
+      "assertions": [
+        "Applies strategic decision framework, not a simple yes/no",
+        "Comments on the valuation multiple (10x ARR at Series A)",
+        "Flags 18-month runway as negotiating leverage",
+        "Raises team/culture considerations post-acquisition",
+        "Identifies investor vs founder goal tension",
+        "Asks or notes missing context (growth rate, founder goals)",
+        "Suggests professional M&A or legal advisor"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to prepare a board update for next week. We missed our Q2 revenue target by 22%. How do I present this?",
+      "expected_output": "Should apply board communication guidance. Should NOT advise spin or hiding the miss. Should recommend the structure: (1) headline the miss immediately — boards hate buried bad news, (2) root cause analysis with clear ownership (pipeline? churn? pricing? execution?), (3) what has already changed since the miss (shows responsiveness), (4) revised forecast with assumptions stated explicitly, (5) what you need from the board. Should distinguish between a one-time miss and a systemic issue — board reads tone. Should advise on pre-board calls with key investors before the meeting to avoid surprises. Should note that credibility comes from clarity and speed of response, not the miss itself.",
+      "assertions": [
+        "Advises leading with the miss, not burying it",
+        "Recommends root cause analysis structure",
+        "Includes 'what has changed' since the miss",
+        "Includes revised forecast with explicit assumptions",
+        "Recommends pre-meeting investor calls to avoid surprises",
+        "Notes credibility is built through clarity, not by hiding the miss",
+        "Does not suggest spin or minimizing"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We're burning $180K/month with $900K in the bank. We have 5 months runway. Our Series B is taking longer than expected. What are my options?",
+      "expected_output": "Should apply capital and crisis management frameworks. Should immediately surface the severity: 5-month runway is a crisis threshold, not a planning exercise. Options to present: (1) Emergency cost reduction — which costs can be cut immediately without breaking the product? (timeline: act in 30 days), (2) Bridge financing — existing investors, revenue-based financing, venture debt (faster than new round), (3) Accelerate Series B — what's blocking it? valuation, metrics, macro?, (4) Revenue acceleration — can you pull forward ARR through annual prepay discounts or enterprise deals?, (5) Strategic options — acqui-hire or partnership as last resort. Should recommend acting on options 1 and 2 in parallel NOW, not sequentially. Should frame the time math: at $180K burn, cutting to $120K buys 2.5 additional months. Should never recommend just 'wait and see'.",
+      "assertions": [
+        "Flags 5-month runway as crisis threshold requiring immediate action",
+        "Presents multiple options (cost cut, bridge, revenue pull-forward, strategic)",
+        "Recommends acting in parallel, not sequentially",
+        "Shows time math impact of cost reduction",
+        "Distinguishes fast options (bridge, cost cut) from slow ones (new round)",
+        "Does not recommend 'wait and see'",
+        "Addresses what might be blocking the Series B"
+      ],
+      "files": []
+    }
+  ]
+}
