@@ -53,5 +53,41 @@
       ],
       "files": []
     }
+  ,
+    {
+      "id": 4,
+      "prompt": "Review this French text for writing quality issues:\n\n\"Il est important de noter que notre solution de sécurité est tout simplement incontournable dans un monde où les cybermenaces évoluent rapidement. Force est de constater que les entreprises n'ont pas le choix. Notre approche, que vous soyez une PME ou un grand groupe, garantit une protection sans précédent. Il est essentiel de souligner que notre technologie securite est a la pointe du marche.\"",
+      "expected_output": "Must return FAIL. Must flag each issue individually: (1) 'Il est important de noter que' — French filler opener, (2) 'incontournable' — French superlative jargon, (3) 'dans un monde où' — French landscape temporal anchor, (4) 'Force est de constater que' — French filler opener, (5) 'que vous soyez [X] ou [Y]' — French rhetorical setup, (6) 'sans précédent' — French superlative jargon, (7) 'Il est essentiel de souligner que' — French filler opener, (8) 'garantit une protection' — overconfident claim, (9) 'securite' — missing accent (language integrity violation, should be sécurité), (10) 'a la pointe' — missing accents + French superlative. Must flag accent violations as language integrity failures, not just style. Must provide at least one concrete rewrite. Must NOT flag technical content (cybermenaces, PME, protection) as slop.",
+      "assertions": [
+        "Returns FAIL status",
+        "Flags 'Il est important de noter que' as French filler opener",
+        "Flags 'incontournable' as French superlative jargon",
+        "Flags 'dans un monde où' as French landscape temporal anchor",
+        "Flags 'Force est de constater que' as French filler opener",
+        "Flags 'que vous soyez [X] ou [Y]' as French rhetorical setup",
+        "Flags 'sans précédent' as French superlative jargon",
+        "Flags 'securite' as missing accent (language integrity violation)",
+        "Provides at least one concrete rewrite",
+        "Does NOT flag technical content (cybermenaces, PME) as slop"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Review this technical documentation for writing quality issues:\n\n\"Our authentication middleware guarantees that SQL injection is impossible. The input sanitization layer ensures zero XSS vulnerabilities. Enabling rate limiting prevents all brute-force attacks. This combination eliminates the entire attack surface. Every deployment of this stack will always be secure.\"",
+      "expected_output": "Must return FAIL with a numbered list of overconfident claims. Must flag each individually: (1) 'guarantees that SQL injection is impossible' — double overstatement (guarantees + impossible), (2) 'ensures zero XSS vulnerabilities' — absolute claim, (3) 'prevents all brute-force attacks' — 'prevents all' is not demonstrable, (4) 'eliminates the entire attack surface' — 'eliminates' + 'entire' are both overstatements, (5) 'always be secure' — 'always' is a lazy extreme. Must propose rewrites using: reduces, mitigates, helps prevent, lowers risk. Must NOT flag technical terminology (SQL injection, XSS, rate limiting, brute-force, attack surface) as slop.",
+      "assertions": [
+        "Returns FAIL status",
+        "Flags 'guarantees' as overconfident claim",
+        "Flags 'impossible' as overstatement",
+        "Flags 'ensures zero' as absolute claim",
+        "Flags 'prevents all' as non-demonstrable claim",
+        "Flags 'eliminates the entire' as overstatement",
+        "Flags 'always' as lazy extreme (universal claim)",
+        "Proposes rewrites using reduces/mitigates/helps prevent/lowers risk",
+        "Does NOT flag technical security terminology (SQL injection, XSS, attack surface) as slop"
+      ],
+      "files": []
+    }
   ]
 }

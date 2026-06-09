@@ -22,7 +22,7 @@ Eliminate predictable AI writing patterns from prose.
 
 5. **Put the reader in the room.** No narrator-from-a-distance voice. "You" beats "People." Specifics beat abstractions.
 
-6. **Vary rhythm.** Mix sentence lengths. Two items beat three. End paragraphs differently. No em dashes. No tirets typographiques.
+6. **Vary rhythm.** Mix sentence lengths. Avoid rhetorical three-item lists used as decoration. Technical enumerations are allowed. End paragraphs differently. No em dashes. No tirets typographiques.
 
 7. **Trust readers.** State facts directly. Skip softening, justification, hand-holding.
 
@@ -44,6 +44,74 @@ Before delivering prose:
 - Vague declarative ("The implications are significant")? Name the specific implication.
 - Narrator-from-a-distance ("Nobody designed this")? Put the reader in the scene.
 - Meta-joiners ("The rest of this essay...")? Delete. Let the essay move.
+
+## French Writing
+
+### Language Integrity
+
+When writing in French, preserve all diacritics and accents.
+
+- Use: é, è, ê, à, ù, ç, ô, ï, ë when required.
+- Never replace with ASCII equivalents for convenience.
+- Incorrect: securite, developpement, strategie
+- Correct: sécurité, développement, stratégie
+
+### French AI Patterns
+
+Remove these French-language AI tells. They are the French equivalents of
+"Here's the thing" and "It's worth noting." See [references/phrases.md](references/phrases.md).
+
+### Punctuation (any language)
+
+No em dashes (—) or en dashes (–) used as sentence separators.
+Replace with: period, comma, colon, or parentheses.
+
+Bad: The system works — when configured correctly.
+Good: The system works when configured correctly.
+Good: The system works. Configure it correctly.
+
+---
+
+## Confidence Calibration
+
+Do not claim certainty the writer cannot demonstrate.
+
+Avoid:
+- guarantees / garantit
+- ensures / assure
+- prevents / empêche
+- eliminates / élimine
+- impossible
+- always / toujours (as a universal claim)
+
+Prefer:
+- reduces / réduit
+- improves / améliore
+- helps / aide
+- increases likelihood / augmente les chances
+- in most cases / dans la plupart des cas
+
+Bad: "This pattern prevents SQL injection."
+Good: "This pattern reduces SQL injection risk."
+
+Bad: "Our approach guarantees zero downtime."
+Good: "Our approach targets zero downtime."
+
+---
+
+## Technical Writing Exception
+
+This skill targets style, not substance. Do not remove:
+
+- Technical terminology (HTTP methods, algorithm names, protocol names)
+- Precise definitions and specifications
+- RFC/security/architectural vocabulary
+- Enumerated technical properties (even if there are three or more)
+
+Prefer precision over minimalism. If removing a word changes the technical
+meaning, keep the word.
+
+---
 
 ## Scoring
 

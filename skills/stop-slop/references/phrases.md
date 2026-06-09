@@ -78,6 +78,47 @@ Also cut these filler phrases:
 - "In today's [X]"
 - "It's worth noting"
 - "At the end of the day"
+
+---
+
+## French AI Patterns
+
+Remove these French-language AI tells.
+
+### Filler Openers / Constructs
+
+- "Il est important de noter que"
+- "Il convient de souligner que"
+- "Il est essentiel de rappeler que"
+- "Force est de constater que"
+- "Il va sans dire que"
+- "Il est à noter que"
+
+### Landscape / Temporal Anchors
+
+- "Dans un monde où"
+- "À l'ère du numérique"
+- "Dans le contexte actuel"
+- "Dans le paysage actuel"
+- "En cette période de transformation"
+
+### Rhetorical Setups
+
+- "Que vous soyez [X] ou [Y]"
+- "Que ce soit pour [X] ou [Y]"
+- "Plus qu'un simple [X]"
+- "Il ne s'agit pas seulement de"
+- "Au-delà de [X], il y a [Y]"
+- "Ce n'est pas un hasard si"
+
+### Superlatives / False Authority
+
+- "incontournable"
+- "indispensable"
+- "révolutionnaire"
+- "sans précédent"
+- "à la pointe"
+- "de premier plan"
 - "When it comes to"
 - "In a world where"
 - "The reality is"

@@ -119,12 +119,17 @@ Wh- openers become a crutch. "What makes this hard is..." becomes "The constrain
 
 | Pattern | Fix |
 |---------|-----|
-| Three-item lists | Use two items or one |
+| Rhetorical three-item lists (decoration, not information) | Use two items or one |
 | Questions answered immediately | Let questions breathe or cut them |
 | Every paragraph ends punchily | Vary endings |
 | Em-dashes | Remove. Use commas or periods. No em dashes at all. |
 | Staccato fragmentation | Don't stack short punchy sentences |
 | "Not always. Not perfectly." | Hedging disguised as reassurance |
+
+**Exception:** Technical enumerations are valid regardless of count.
+Examples: CIA triad (Confidentiality, Integrity, Availability), OSI layers,
+People/Process/Technology. The test: each item must carry distinct technical
+meaning. If removing one item loses information, keep the list.
 
 ## Word Patterns
 
